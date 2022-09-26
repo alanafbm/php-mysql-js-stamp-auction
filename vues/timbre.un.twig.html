@@ -1,0 +1,97 @@
+{% extends "base.twig.html" %}
+
+{% block main %}
+<script src="../ressources/JS/zoom.js"></script>
+
+<!---------------------Sections------------------->
+<div class="wrapper pd-rl padding-top">
+
+    <a href="timbre/tout" class="svg"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            aria-hidden="true" role="img" class="iconify iconify--bi" width="32" height="32"
+            preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+            <path fill="#010346" fill-rule="evenodd"
+                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z">
+            </path>
+        </svg>Back to catalogue</a>
+    <div class="containerSection">
+        <div class="imgPetitContainer">
+            <img class="imgPetit" src="../{{timbre.img_path}}" alt="">
+            <img class="imgPetit" src="../{{timbre.img_path}}" alt="">
+            <img class="imgPetit" src="../{{timbre.img_path}}" alt="">
+        </div>
+        <div class="img-magnifier-container">
+            <img id="myimage" src="../{{timbre.img_path}}" width="350" height="450" alt="timbre_roosevelt">
+        </div>
+        <div class="descriptionContainer">
+            <h3>{{timbre.tim_nom}}</h3>
+            <h5>COULEUR: {{timbre.tim_couleur}}</h5>
+            <h5>VALEUR ESTIMÉE: {{timbre.tim_prix}}</h5>
+            <h5>PAYS ORIGINE: {{timbre.tim_pays_origine}}</h5>
+            <h5>DATE DE FIN: {{timbre.enc_date_fin}}</h5>
+            <h5>DIMENSIONS: {{timbre.tim_dimensions}}</h5>
+            <h5>DERNIER MISE: $650</h5>
+            {% if session.utilisateur %}
+            <div class="space-between">
+                <a href="timbre/miser"><button class="btn" style="margin-top: 15px;">PLACER UNE MISE</button></a>
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        aria-hidden="true" role="img" class="iconify iconify--bi" width="32" height="32"
+                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
+                        <path fill="currentColor" fill-rule="evenodd"
+                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15C-7.534 4.736 3.562-3.248 8 1.314z"></path>
+                    </svg></a>
+            </div>
+            {% else %}
+            <a href="utilisateur/index"><button class="btn" style="margin-top: 15px;">SE CONNECTER POUR PLACER UNE
+                    MISE</button></a>
+            {% endif %}
+        </div>
+    </div>
+    <div>
+        <article class="flex" id="description">
+            <div class="articleFlex">
+                <h5>DESCRIPTION</h5>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                    role="img" class="iconify iconify--uil" width="32" height="32" preserveAspectRatio="xMidYMid meet"
+                    viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71L8.46 9.17a1 1 0 0 0-1.41 0a1 1 0 0 0 0 1.42l4.24 4.24a1 1 0 0 0 1.42 0L17 10.59a1 1 0 0 0 0-1.42Z">
+                    </path>
+                </svg>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                et dolore magna aliqua. Faucibus pulvinar elementum integer enim. Dapibus ultrices in iaculis nunc
+                sed augue. Enim nulla aliquet porttitor lacus luctus accumsan tortor posuere ac. Cursus in hac
+                habitasse platea dictumst. Elementum integer enim neque volutpat ac tincidunt vitae semper. Cras sed
+                felis eget velit aliquet sagittis id. Fusce id velit ut tortor pretium viverra suspendisse potenti.
+                Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Et netus et malesuada fames ac
+                turpis egestas integer eget. Lacus sed viverra tellus in hac habitasse platea dictumst vestibulum.
+                Egestas tellus rutrum tellus pellentesque. Nulla facilisi nullam vehicula ipsum a arcu. Nam aliquam
+                sem et tortor consequat id porta nibh venenatis. Nunc sed velit dignissim sodales ut. Id consectetur
+                purus ut faucibus.</p>
+        </article>
+        <article class="flex" id="conditions">
+            <div class="articleFlex">
+                <h5>CONDITIONS</h5>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                    role="img" class="iconify iconify--uil" width="32" height="32" preserveAspectRatio="xMidYMid meet"
+                    viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71L8.46 9.17a1 1 0 0 0-1.41 0a1 1 0 0 0 0 1.42l4.24 4.24a1 1 0 0 0 1.42 0L17 10.59a1 1 0 0 0 0-1.42Z">
+                    </path>
+                </svg>
+            </div>
+            <p>Sem integer vitae justo eget magna fermentum. Dictum non consectetur a erat nam at. Eget egestas
+                purus viverra accumsan in nisl. Magna eget est lorem ipsum dolor sit amet consectetur adipiscing.
+                Eget felis eget nunc lobortis mattis aliquam faucibus purus. Cursus vitae congue mauris rhoncus
+                aenean vel elit scelerisque. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Quis
+                blandit turpis cursus in hac habitasse. Amet nulla facilisi morbi tempus iaculis urna id. Vestibulum
+                morbi blandit cursus risus at ultrices mi. Lorem donec massa sapien faucibus et molestie ac feugiat
+                sed. Eget nunc scelerisque viverra mauris in aliquam sem fringilla ut. Mi tempus imperdiet nulla
+                malesuada pellentesque elit.</p>
+        </article>
+    </div>
+</div>
+
+<script src="../ressources/JS/zoom.js"></script>
+
+{% endblock %}

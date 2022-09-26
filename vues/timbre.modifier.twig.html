@@ -1,0 +1,56 @@
+{% extends "base.twig.html" %}
+
+{% block main %}
+{% if session.utilisateur %}
+<div class="align-center flex">
+<section class="cardPageMembre">
+   <h1>Enchere {{infos.enchere_enc_id}}</h1>
+    <form method="POST" action="timbre/modifier{{infos.enchere_enc_id}}" enctype="multipart/form-data">
+       <div class="cardEnchere">
+          <div class="formEnchere">
+             <label for="enc_nom">Nom d'enchère'</label>
+             <input type="text"  name="enc_nom" id="enc_nom" placeholder="Nom d'enchère" >
+             <label for="tim_date_creation">Date creation</label>
+             <input type="date" name="tim_date_creation" id="tim_date_creation">
+             <label for="tim_couleur">Couleur</label>
+             <input type="text" name="tim_couleur" id="tim_couleur" placeholder="Couleur du timbre" >
+             <label for="tim_pays_origine">Pays d'origine</label>
+             <input type="text" name="tim_pays_origine" id="tim_pays_origine" placeholder="Pays d'origine" >
+             <label for="tim_prix">Prix</label>
+             <input type="number" name="tim_prix" id="tim_prix" min="0" placeholder="0" >
+             <label for="tim_dimensions">Dimensions</label>
+             <input type="text" name="tim_dimensions" id="tim_dimensions" placeholder="25 X 22 mm" >
+          </div>
+          <div class="formEnchere">
+             <label for="tim_certifie">Certificat</label>
+             <select name="tim_certifie" id="tim_certifie" >
+                 <option value="">-</option>
+                 <option value="oui">oui</option>
+                 <option value="non">non</option>
+             </select>
+             <label for="con_etat">Condition</label>
+             <select name="con_etat" id="con_etat" value="{{con_etat}}" >
+                 <option value="">-</option>
+                 <option value="endommagée">endommagée</option>
+                 <option value="bonne">bonne</option>
+                 <option value="avec gomme">avec gomme</option>
+                 <option value="sans gomme">sans gomme</option>
+
+             </select>
+             <label for="enc_pieces">Pieces</label>
+             <input type="number"  name="enc_pieces" id="enc_pieces" placeholder="Pieces" >
+             <label for="enc_date_debut">Date debut</label>
+             <input type="date" value="{{enc_date_debut}}" name="enc_date_debut" id="enc_date_debut" placeholder="Date debut" >
+             <label for="enc_date_fin">Date fin</label>
+             <input type="date" value="{{enc_date_fin}}" name="enc_date_fin" id="enc_date_fin" placeholder="Date fin" >
+             <label for="img_path">Image</label>
+             <input type="file" name="img_path" id="img_path" accept="image/png, image/jpeg" multiple placeholder=" Image">
+          </div>
+       </div>
+       <input class="btnPublier" type="submit" name="publier">
+    </form>
+ </section>
+</div>
+ {% endif %}
+
+{% endblock %}

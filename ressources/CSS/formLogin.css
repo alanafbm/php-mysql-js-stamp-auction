@@ -1,0 +1,161 @@
+@import "root.css";
+
+.containerText h1{
+    font-size: 2.5em;
+    font-weight: bold;
+    font-family: var(--ff-primary);
+    margin-bottom: 30px;
+    color: white;
+}
+.containerText h2{
+    font-size: 1.6em;
+    font-weight: 100;
+    margin: 20px 35px 25px 35px;
+    line-height: 1.4;
+    color: var(--primary-color);
+}
+.svgLogin{
+    padding: 0;
+    margin: 0;
+}
+.box a{
+    text-decoration: none;
+    color: white;
+    line-height: 1.2;
+}
+.containerLogin{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 200px 0px;
+}
+.box{
+    background-color: var(--secondary-color);
+    width: 400px;
+    height: 650px;
+    padding: 35px 25px 25px 25px;
+    line-height: 1.625;   
+    border: 2px solid white;
+    border-radius: 45px;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+}
+.containerText{
+    text-align: center;
+    color: var(--font-color-primary);
+}
+.containerInput{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 10px 0 10px;
+}
+.box label{
+    color: white;
+    font-family: var(--ff-primary);
+    margin-left: 20px;
+}
+#username{
+    padding: 20px;
+    margin: 0 15px 15px 15px;
+    border: none;
+    border-radius: 10px;
+    position: relative;
+}
+#password{
+    padding: 20px;
+    margin: 0 15px 0 15px;
+    border: none;
+    border-radius: 10px;
+    position: relative;
+}
+.iconify-eye{
+    color: grey;
+    position: absolute;
+    top: 274px;
+    left: 350px;
+    width: 25px;
+    cursor: pointer;
+}
+.box p{
+    font-size: 0.9em;
+    margin-top: 15px;
+    margin-left: 240px;
+    margin-bottom: 30px;
+    font-family: var(--ff-tertiary);
+    color: white;
+    line-height: 2;
+}
+.buttonLogin{
+    background-color: var(--primary-color);
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 10px;
+    width: 80%;
+    text-align: center;
+    margin-left: 38px;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+.box .buttonLogin a{
+    color: white;
+}
+.buttonLogin:hover{
+    background-color: white;
+    color: var(--secondary-color);
+    box-shadow: inset;
+    transform: scale(1.02);
+}
+.box h3{
+    font-size: 0.8em;
+    text-align: center;
+    color: white;
+    font-family: var(--ff-tertiary);
+    margin: 0; 
+
+}
+.containerIcon{
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 0;
+}
+.icon{
+    background-color: transparent;
+    padding: 12px 30px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+.continueWith{
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    justify-content: center;
+}
+
+.lign{
+    background-color: grey;
+    width: 40px;
+    height: 2px;
+    margin: 0 20px;
+}
+.hidden{
+    display: none;
+}
+.iconify--logos{
+    cursor: pointer;
+}
+.iconContainer{
+    transition: transform 0.2s;
+}
+.iconContainer:hover{
+    transform: scale(1.2);
+}
+input[type="submit"] {
+    border: none;
+    align-items: center;
+    font-size: 1.3em;
+    font-family: var(--ff-primary);
+    text-transform: uppercase;
+}

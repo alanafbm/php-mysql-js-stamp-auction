@@ -1,0 +1,60 @@
+{% extends "base.twig.html" %}
+
+{% block main %}
+ <!---------------------Header------------------->
+
+ <header class="banner">
+    <img src="ressources/images/ali-bakhtiari-81eOv8Vox8k-unsplash-small.jpg" alt="">
+  </header>
+<!---------------------Section catalogue timbres------------------->
+
+  <div class="wrapper">
+    <section class="searchMenu">
+      <label for="sortBy">Sort by
+        <select name="sortBy" id="sortBy">
+          <option value=""></option>
+          <option {{ (tim_prix == 'prix') ? 'selected' : '' }} value="prix">Prix</option>
+          <option {{ (enchere_enc_id == 'lot') ? 'selected' : '' }} value="lot">Lot</option>
+        </select>
+      </label>
+      <label for="condition">Condition
+        <select name="condition" id="condition">
+          <option value="1"></option>
+          <option {{ (con_etat == 'sans_gomme') ? 'selected' : '' }} value="sans_gomme">Sans gomme</option>
+          <option {{ (con_etat == 'avec_gomme') ? 'selected' : '' }} value="avec_gomme">Avec gomme</option>
+          <option {{ (con_etat == 'nouveau') ? 'selected' : '' }} value="nouveau">Nouveau</option>
+        </select>
+      </label>
+      <input type="search" placeholder="Recherche">
+    </section>
+    <section class="cards">
+      {% for enchere in encheres %} 
+      {% for infos in enchere %} 
+      <div class="card" id="{{infos.tim_id}}" data-js-card>
+        <img src="../{{infos.img_path}}" alt="">
+        <div class="flex">
+          <h4>Ouvert {{infos.enc_date_debut}} - {{infos.enc_date_fin}}</h4>
+          <h3>Nom: {{infos.enc_nom}}</h3>
+          <h3>Pieces: {{infos.enc_pieces}}</h3>
+          <h3>Prix plancher: {{infos.tim_prix}}</h3>
+          {% if session.utilisateur and utilisateur == infos.utilisateur_uti_id %}
+            <div class="divRow btnDetails">
+              <a href="timbre/un/{{infos.tim_id}}" ><button class="btn">MORE DETAILS</button></a>
+              <a href="timbre/modifier/{{infos.enchere_enc_id}}" data-js-update><button class="btn">MODIFIER</button></a>
+              <a href="timbre/retirer/{{infos.enchere_enc_id}}" data-js-delete><button class="btn">SUPPRIMER</button></a>
+            </div>
+          {% else %}
+            <div class="divRow btnDetails">
+              <a href="timbre/un/{{infos.tim_id}}"><button class="btn" style="margin-top: 15px;">MORE DETAILS</button></a>
+            </div>
+          {% endif %}
+          </div>
+        </div>
+      {% endfor %}   
+      {% endfor %}
+   
+
+
+    </section>
+  </div>
+{% endblock %}

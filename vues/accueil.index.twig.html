@@ -1,0 +1,100 @@
+{% extends "base.twig.html" %}
+{% block main %}
+
+    <!---------------------Header------------------->
+<main>
+   <header class="banner positionRelative">
+    <img class="bannerAccueil" src="../ressources/images/waldemar-brandt-Q4OvIQk_WjA-unsplash.jpg" alt="">
+    <h2 class="textAccueil">Tout les timbres ont tellement des couleurs, des valeurs et même des designs qu'ils sont
+       devenu une source d'inspiration pour Mrs Stampee lors de la création de cette collection.</h2>
+ </header>
+
+ <!---------------------Sections------------------->
+ <div class="wrapper padding-top">
+    <section class="sectionTypeEnchere">
+       <h2>Coup de coeur du Lord Stampee</h2>
+       <div class="container">
+          <div class="category">
+             <a href="timbre/tout">
+                <img src="../ressources/images/peter-burdon-_lyDtvgmewU-unsplash.jpg" alt="Image">
+                <h3>Timbres Allemands</h3>
+             </a>
+          </div>
+          <div class="category">
+             <a href="timbre/tout">
+                <img src="../ressources/images/fang-wei-lin-QEzdua1GBW4-unsplash.jpg" width="258px" alt="Image">
+                <h3>Timbres Americaines</h3>
+             </a>
+          </div>
+          <div class="category">
+             <a href="timbre/tout">
+                <img src="../ressources/images/ali-bakhtiari-81eOv8Vox8k-unsplash-small.jpg" alt="Image">
+                <h3>Timbres Brésiliennes</h3>
+             </a>
+          </div>
+          <div class="category">
+             <a href="timbre/tout">
+                <img src="../ressources/images/waldemar-brandt-Q4OvIQk_WjA-unsplash.jpg" alt="Image">
+                <h3>Timbres Argentines</h3>
+             </a>
+          </div>
+       </div>
+    </section>
+    <section class="aboutMe">
+       <div>
+          <h2>About Lord Stampee</h2>
+          <p class="textAboutMe">Une personne de fine délicatesse que a garder chaque petit morceau de papier qui
+             prouve un dialogue ou quelque chose qui a été envoyé à quelqu'un de spécial. Ces lettres ont parcouru le
+             monde et j'imagine l'importance que chaque timbre a dans sa vie. Il y a tellement de couleurs, de valeurs
+             et même de designs qu'il est devenu une source d'inspiration pour un si bon goût lors de la création de
+             cette collection.</p>
+          <button class="button">Voir plus</button>
+       </div>
+       <img src="../ressources/images/lord_stampee_photo.jpg" alt="">
+    </section>
+    <section class="sectionGalerie">
+       <h2>Galerie photos</h2>
+       <div class="galerie">
+          <figure class="galerieItem galerieItem--1">
+             <img src="../ressources/images/ali-bakhtiari-81eOv8Vox8k-unsplash-small.jpg" class="galerieImg" alt="Image 1">
+          </figure>
+          <figure class="galerieItem galerieItem--2">
+             <img src="../ressources/images/fang-wei-lin-QEzdua1GBW4-unsplash.jpg" class="galerieImg" alt="Image 2">
+          </figure>
+          <figure class="galerieItem galerieItem--3">
+             <img src="../ressources/images/gustavo-boaron-07FPM-tbIEs-unsplash.jpg" class="galerieImg" alt="Image 3">
+          </figure>
+          <figure class="galerieItem galerieItem--4">
+             <img src="../ressources/images/jesse-orrico-OqQyk8vN30k-unsplash.jpg" class="galerieImg" alt="Image 4">
+          </figure>
+          <figure class="galerieItem galerieItem--5">
+             <img src="../ressources/images/peter-burdon-_lyDtvgmewU-unsplash.jpg" class="galerieImg" alt="Image 5">
+          </figure>
+          <figure class="galerieItem galerieItem--6">
+             <img src="../ressources/images/waldemar-brandt-Q4OvIQk_WjA-unsplash.jpg" class="galerieImg" alt="Image 6">
+          </figure>
+       </div>
+    </section>
+    <section class="sectionNewsLetter">
+       <div class="align-center">
+          <div class="background-rond"></div>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+             role="img" class="iconify iconify--mdi" width="32" height="32" preserveAspectRatio="xMidYMid meet"
+             viewBox="0 0 24 24">
+             <path fill="#293451"
+                d="M12 .64L8.23 3H5v2L2.97 6.29C2.39 6.64 2 7.27 2 8v10a2 2 0 0 0 2 2h16c1.11 0 2-.89 2-2V8c0-.73-.39-1.36-.97-1.71L19 5V3h-3.23M7 5h10v4.88L12 13L7 9.88M8 6v1.5h8V6M5 7.38v1.25L4 8m15-.62L20 8l-1 .63M8 8.5V10h8V8.5Z">
+             </path>
+          </svg>
+       </div>
+       <div class="newsletter">
+          <h2>Abonnez-vous à notre infolettre</h2>
+          <h4>Restez à jour avec nos dernières nouvelles et timbres</h4>
+          <div>
+             <input type="text" placeholder="Your e-mail adress">
+             <button class="btn">SUBSCRIBE</button>
+          </div>
+       </div>
+    </section>
+ </div>
+</main>
+{% endblock %}

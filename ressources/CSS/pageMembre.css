@@ -1,0 +1,68 @@
+.cardPageMembre{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(41, 52, 81, 0.077);
+    padding: 25px;
+    border-radius: 5px;
+    margin: 25px 0 25px 0;
+    width: 1200px;
+    border: 4px dashed var(--primary-color);
+    line-height: 1.625;
+    align-items: center;
+    justify-content: space-between;
+}
+.cardEnchere{
+    display: flex;
+}
+.cardPageMembre ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--secondary-color);
+  opacity: 1; /* Firefox */
+}
+.cardPageMembre h2{
+    margin: 20px 0;
+    letter-spacing: .1em;
+    font-size: 1.8em;
+}
+.cardPageMembre h4{
+    margin: 20px 0;
+    font-size: 1.5em;
+}
+.cardPageMembre input,textarea{
+    width: 320px;
+    height: 40px;
+    margin: 20px 25px;
+    letter-spacing: .1em;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+}
+.profilMembre{
+    margin-left: 130px;
+}
+.profilMembre span{
+    font-size: 1.3em;
+    margin: 0;
+}
+.flexRow{
+    display: flex;
+    flex-direction: row;
+}
+.formEnchere{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.cardPageMembre .btnPublier{
+    background-color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 10px;
+    width: 80%;
+    text-align: center;
+    margin-top: 45px;
+    margin-left: 60px;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+textarea{
+    padding: 15px;
+}

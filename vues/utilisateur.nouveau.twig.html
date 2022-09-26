@@ -1,0 +1,27 @@
+{% extends "base.twig.html" %}
+{% block main %}
+
+    <section class="containerLogin">
+        <form class="nouveau-compte" method="post" action="utilisateur/ajouter">
+            <div class="containerText">
+                <h1>Créer un compte</h1>
+            </div>
+            <div class="containerInput">
+
+                <label for="uti_nom">Nom</label>
+                <input type="text" value="{{uti_nom}}" name="uti_nom" id="uti_nom" placeholder="Votre nom" required>
+                <label for="uti_prenom">Prénom</label>
+                <input type="text" value="{{uti_prenom}}" name="uti_prenom" id="uti_prenom" placeholder="Votre prenom" required>
+                <label for="uti_courriel">Courriel</label>
+                <input type="email" value="{{uti_courriel}}" name="uti_courriel" id="uti_courriel" placeholder="Adresse de courriel" required>
+                <label for="uti_pays_residence">Pays de residence</label>
+                <input type="email" value="{{uti_pays_residence}}" name="uti_pays_residence" id="uti_pays_residence" placeholder="Pays residence" required>
+                <label for="uti_mdp">Mot de passe</label>
+                <input type="password" name="uti_mdp" id="uti_mdp" placeholder="Mot de passe" required>
+            <br>
+            <input class="buttonLogin" type="submit" value="S'inscrit">
+        
+        </form>
+    </section>
+
+{% endblock %}
