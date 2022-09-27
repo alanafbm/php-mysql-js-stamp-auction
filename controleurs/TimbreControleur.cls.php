@@ -26,7 +26,9 @@ class TimbreControleur extends Controleur
         // Injecte le résultat dans la 'vue'
         $this->gabarit->affecter('encheres', $this->modele->tout());
         // Use for add modifier and supprimer in timbre/tout
-        $this->gabarit->affecter('utilisateur', $_SESSION["utilisateur"]->uti_id);
+        if($_SESSION["utilisateur"]){
+            $this->gabarit->affecter('utilisateur', $_SESSION["utilisateur"]->uti_id);
+        }
         // $this->gabarit->affecter('timbres', $this->modele->toutTimbre());
         // print_r($this->modele->tout());
        
@@ -95,9 +97,35 @@ class TimbreControleur extends Controleur
      */
     public function rechercher() 
     {
-        if($_POST['recherche'] != "") {
-            $recherche = "%" . $_POST['recherche'] . "%";
-            $this->gabarit->affecter('timbres', $this->modele->rechercher($recherche, $_SESSION["utilisateur"]->uti_id));
+        if($_POST){
+            // Certifie
+            if($_POST["certifie"] && $_POST["certifie"]  != "0") {
+                $this->gabarit->affecter('encheres', $this->modele->rechercheCertifie($_POST));
+            }
+            // else{
+            //     Utilitaire::nouvelleRoute('timbre/tout');
+            // }
+            // Condition   
+            if ($_POST["condition"] && $_POST["condition"] != "0"){
+                
+                $this->gabarit->affecter('encheres', $this->modele->rechercheCondition($_POST));
+                // print_r($this->modele->rechercherCondition($_POST));
+            }
+            // else{
+            //     Utilitaire::nouvelleRoute('timbre/tout');
+            // }
+            // Recherche
+            if ($_POST["recherche"]){
+                $recherche = "%" . $_POST['recherche'] . "%";
+                // print_r($recherche);
+                $this->gabarit->affecter('encheres', $this->modele->rechercher($recherche));
+            }
+            // else{
+            //     Utilitaire::nouvelleRoute('timbre/tout');
+            // }
+        }
+        else{
+            Utilitaire::nouvelleRoute('timbre/tout');
         }
     }
 

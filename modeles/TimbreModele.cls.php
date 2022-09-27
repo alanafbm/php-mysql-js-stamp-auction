@@ -165,21 +165,55 @@ class TimbreModele extends AccesBd
      * @return object[] Un tableau d'objets représentant tous les encheres et leur timbres associés.
      *
      */
-    public function rechercher($expression, $uti_id)
+    public function rechercher($expression)
     {
-/* 
-        return $this->lireTout("SELECT enc_id, enc_nom, enc_description.*  FROM enchere 
-                                JOIN timbre ON tim_id=tel_ctc_id_ce 
-                                WHERE ctc_nom LIKE :ctc_nom OR ctc_prenom LIKE :ctc_prenom OR tel_numero LIKE :tel_numero 
-                                AND ctc_uti_id_ce = '$uti_id'
-                                ORDER BY ctc_prenom"
+        print_r($expression);
+        return $this->lireTout("SELECT *  FROM enchere 
+                                JOIN timbre ON enchere_enc_id = enc_id
+                                LEFT JOIN image ON img_timbre_tim_id = tim_id 
+                                WHERE enc_nom LIKE :enc_nom OR tim_nom LIKE :tim_nom                                ORDER BY enchere_enc_id"
                                 , true, // on veut les données groupées par contact
                                 [
-                                "ctc_nom"          => $expression,
-                                "ctc_prenom"      => $expression, 
-                                "tel_numero"        => $expression
-                            ]); */
+                                "enc_nom"          => $expression,
+                                "tim_nom"      => $expression 
+                            ]); 
     }
+
+
+    public function rechercheCertifie($post){
+        $expression = $post["certifie"];
+        return $this->lireTout("SELECT * FROM enchere 
+                                JOIN timbre ON enchere_enc_id = enc_id
+                                LEFT JOIN image ON img_timbre_tim_id = tim_id 
+                                WHERE tim_certifie LIKE :oui OR tim_certifie LIKE :non 
+                                ORDER BY enchere_enc_id"
+                                , true, 
+                                [
+                                "oui"          => $expression,
+                                "non"      => $expression
+                            ]); 
+
+    }
+
+    public function rechercheCondition($post){
+        
+        $con_id = $post["condition"];
+        // print_r($con_id);
+        return $this->lireTout("SELECT * FROM enchere 
+                                JOIN timbre ON enchere_enc_id = enc_id
+                                LEFT JOIN image ON img_timbre_tim_id = tim_id 
+                                WHERE conservation_con_id LIKE :avec_gomme OR conservation_con_id LIKE :sans_gomme OR conservation_con_id LIKE :bonne OR conservation_con_id LIKE :endommagee
+                                ORDER BY enchere_enc_id"
+                                , true, 
+                                [
+                                    "avec_gomme"          => $con_id,
+                                    "sans_gomme"      => $con_id,
+                                    "bonne"      => $con_id,
+                                    "endommagee"      => $con_id
+                                ]); 
+
+    }
+    
 
     public function toutCategories()
     {
