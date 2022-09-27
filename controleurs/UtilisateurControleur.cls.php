@@ -73,20 +73,14 @@ class UtilisateurControleur extends Controleur
 
     
     /**
-      * Affichage du détail d’un timbre particulier est cliqué.
-     *  Route associée : timbre/un
+      * Verification d’un utilisateur particulier.
+     *  Route associée : utilisateur/un
      */
     public function un($courriel)
     {
-        // Chercher les timbres de la BD 
-        // $resultat = $this->modele->un($tim_id);
+        // Chercher les utilisateurs de la BD 
         // print_r($this->modele->un($courriel));
         $this->modele->un($courriel);
-        // // Injecte le résultat dans la 'vue'
-        // $this->gabarit->affecter('timbre', $resultat);
-
-        // return $resultat;
-        // Utilitaire::nouvelleRoute('timbre/un');
     }
 
     /**

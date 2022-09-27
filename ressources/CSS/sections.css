@@ -167,6 +167,12 @@ section>.card:first-child{
 .btn>a{
     font-size: 1em;
 }
+.formCatalogue{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
 
 /* FICHE D`ENCHÉRES */
 
@@ -186,7 +192,7 @@ section>.card:first-child{
     width: 100px;
     height: 130px;
     margin: 10px;
-    object-fit: cover;
+    /* object-fit: cover; */
 }
 .img-magnifier-container {
     position:relative;

@@ -62,6 +62,7 @@
     border: none;
     border-radius: 10px;
     position: relative;
+    width: 80%;
 }
 #password{
     padding: 20px;
@@ -69,11 +70,12 @@
     border: none;
     border-radius: 10px;
     position: relative;
+    width: 80%;
 }
 .iconify-eye{
     color: grey;
     position: absolute;
-    top: 274px;
+    top: 282px;
     left: 350px;
     width: 25px;
     cursor: pointer;
@@ -158,4 +160,7 @@ input[type="submit"] {
     font-size: 1.3em;
     font-family: var(--ff-primary);
     text-transform: uppercase;
+}
+.inputLogin{
+    width: 200px;
 }

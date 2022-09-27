@@ -85,7 +85,7 @@ input{
     border: 2px solid var(--secondary-color);
     color: var(--primary-color);
     font-size: 1.1rem;
-    width: 150px;
+    width: 160px;
     border-radius: 5px;
 }
 
@@ -108,7 +108,7 @@ ul{
 
 img {
     border-radius: 5px;
-    object-fit: cover;
+    /* object-fit: cover; */
 }
 
 .wrapper {
@@ -119,4 +119,8 @@ img {
 footer {
     bottom:0;
     left:0;
+}
+::placeholder{
+    color: var(--secondary-color);
+    font-size: 15px;
 }

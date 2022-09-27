@@ -45,8 +45,6 @@ class TimbreControleur extends Controleur
         $this->gabarit->affecter('timbre', $this->modele->un($tim_id));
         
         // print_r($this->modele->un($tim_id));
-
-
     }
 
     
@@ -81,7 +79,7 @@ class TimbreControleur extends Controleur
     }
 
     /**
-     * Suppression d'un timbre.
+     * Suppression d'un timbre/enchere/image.
      *  Route associée: timbre/retirer
      */
     public function retirer($enc_id) 
@@ -92,7 +90,7 @@ class TimbreControleur extends Controleur
     }
 
     /**
-     * Recherche d'un timbre.
+     * Recherche d'un enchere.
      *  Route associée: timbre/rechercher
      */
     public function rechercher() 
@@ -102,43 +100,35 @@ class TimbreControleur extends Controleur
             if($_POST["certifie"] && $_POST["certifie"]  != "0") {
                 $this->gabarit->affecter('encheres', $this->modele->rechercheCertifie($_POST));
             }
-            // else{
-            //     Utilitaire::nouvelleRoute('timbre/tout');
-            // }
             // Condition   
             if ($_POST["condition"] && $_POST["condition"] != "0"){
                 
                 $this->gabarit->affecter('encheres', $this->modele->rechercheCondition($_POST));
                 // print_r($this->modele->rechercherCondition($_POST));
             }
-            // else{
-            //     Utilitaire::nouvelleRoute('timbre/tout');
-            // }
             // Recherche
             if ($_POST["recherche"]){
                 $recherche = "%" . $_POST['recherche'] . "%";
                 // print_r($recherche);
                 $this->gabarit->affecter('encheres', $this->modele->rechercher($recherche));
             }
-            // else{
-            //     Utilitaire::nouvelleRoute('timbre/tout');
-            // }
         }
         else{
             Utilitaire::nouvelleRoute('timbre/tout');
         }
     }
 
-    public function miser()
-    {
-        $this->gabarit->affecter('mises', $this->modele->toutMises($_SESSION["utilisateur"]->uti_id));
-        
-    }
-    
-    public function changerMise()
-    {
-        $this->modele->changerMise($_POST, $_SESSION["utilisateur"]->uti_id);
 
-    }
+    // public function miser()
+    // {
+    //     $this->gabarit->affecter('mises', $this->modele->toutMises($_SESSION["utilisateur"]->uti_id));
+        
+    // }
+    
+    // public function changerMise()
+    // {
+    //     $this->modele->changerMise($_POST, $_SESSION["utilisateur"]->uti_id);
+
+    // }
 
 }

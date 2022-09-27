@@ -117,4 +117,9 @@ input[type="search"]{
 .secondaryMenu>a:last-child{
     border-right: none;
 }
+.formRecherche{
+    display: flex;
+    flex-direction: row;
+    
+}
 
