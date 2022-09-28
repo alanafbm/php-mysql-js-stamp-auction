@@ -179,6 +179,7 @@ section>.card:first-child{
 .containerSection{
     display: flex;
     justify-content: space-between;
+    padding: 0 150px;
 }
 .imgPetitContainer{
     display: flex;
@@ -272,6 +273,18 @@ h5{
 }
 .padding-top{
     padding-top: 100px;
+}
+.inputMise{
+    padding: 5px;
+    border: 2px solid var(--primary-color);
+    width: 70px;
+    height: 25px;
+    margin-top: 35px;
+    margin-right: 5px;
+}
+.btnMise{
+    height: 40px;
+    margin-top: 33px;
 }
 
 /* css pour afficher description a class Detail */

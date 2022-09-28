@@ -59,11 +59,16 @@
          </form>
       </section>
       <br>
-      <h2>Historique d’offres</h2>
+      <h2>Timbres Favoris</h2>
       <div class="cardPageMembre">
-         <h4>Offre 1</h4>
-         <h4>Offre 1</h4>
-         <h4>Offre 1</h4>
+         {% for favori in favoris %}
+         {% for infos in favori %}
+      <div class="flex">
+         <h4>Timbre {{infos.fav_timbre_tim_id}}</h4>
+         <a href="timbre/un/{{infos.fav_timbre_tim_id}}"><button class="btn">Voir plus</button></a>
+      </div>
+         {% endfor %}
+         {% endfor %}
       </div>
       <br>
       <h2>Mes timbres</h2>

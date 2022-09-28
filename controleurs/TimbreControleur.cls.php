@@ -43,6 +43,9 @@ class TimbreControleur extends Controleur
     {
         // Chercher les timbres de la BD  et Injecte le résultat dans la 'vue'
         $this->gabarit->affecter('timbre', $this->modele->un($tim_id));
+        $mise_max = $this->modele->toutMises($tim_id[0]);
+        $this->gabarit->affecter('mise', $mise_max);
+
         
         // print_r($this->modele->un($tim_id));
     }
@@ -61,7 +64,8 @@ class TimbreControleur extends Controleur
         // $file = addslashes(file_get_contents($_FILES["img_path"]["tmp_name"]));
         $enc_id = $this->modele->ajouterEnchere($_POST, $_SESSION["utilisateur"]->uti_id);
         $tim_id = $this->modele->ajouterTimbre($enc_id, $_POST, $con_id);
-        // $this->modele->ajouterImg($tim_id);
+        print_r($this->modele->ajouterTimbre($enc_id, $_POST, $con_id));
+        //$this->modele->ajouterImg($tim_id);
 
         Utilitaire::nouvelleRoute('timbre/tout');
     }
@@ -119,16 +123,32 @@ class TimbreControleur extends Controleur
     }
 
 
-    // public function miser()
-    // {
-    //     $this->gabarit->affecter('mises', $this->modele->toutMises($_SESSION["utilisateur"]->uti_id));
+    public function miser()
+    {
+        $valeurMise = $_POST["inputMise"];
+        $tim_id = $_POST["tim_id"];
+     
+        $mise_id = $this->modele->insertMise($valeurMise, $tim_id, $_SESSION["utilisateur"]->uti_id);
+        if($mise_id != 0){
+            $mise_max = $this->modele->toutMises($tim_id);
+            $this->gabarit->affecter('timbre', $this->modele->un($tim_id));
+            $this->gabarit->affecter('mise', $mise_max);
+            // print_r($this->modele->un($tim_id));
+            // print_r($mise_max);
         
-    // }
-    
-    // public function changerMise()
-    // {
-    //     $this->modele->changerMise($_POST, $_SESSION["utilisateur"]->uti_id);
+            Utilitaire::nouvelleRoute('timbre/un/' . $tim_id);
+        }
 
-    // }
+    }
+    
+    public function favoris($tim_id)
+    {
+        // print_r($tim_id);
+        $id_tim = $tim_id[0];
+        $this->modele->addFavoris($id_tim, $_SESSION["utilisateur"]->uti_id);
+        $this->gabarit->affecter('favoris', $this->modele->toutFavoris($id_tim));
+        // print_r($this->modele->toutFavoris($id_tim));
+        Utilitaire::nouvelleRoute('utilisateur/profil');
+    }
 
 }

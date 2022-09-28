@@ -14,11 +14,11 @@
             </path>
         </svg>Back to catalogue</a>
     <div class="containerSection">
-        <div class="imgPetitContainer">
+        <!-- <div class="imgPetitContainer">
             <img class="imgPetit" src="../{{timbre.img_path}}" alt="">
             <img class="imgPetit" src="../{{timbre.img_path}}" alt="">
             <img class="imgPetit" src="../{{timbre.img_path}}" alt="">
-        </div>
+        </div> -->
         <div class="img-magnifier-container">
             <img id="myimage" src="../{{timbre.img_path}}" width="350" height="450" alt="timbre_roosevelt">
         </div>
@@ -29,16 +29,18 @@
             <h5>PAYS ORIGINE: {{timbre.tim_pays_origine}}</h5>
             <h5>DATE DE FIN: {{timbre.enc_date_fin}}</h5>
             <h5>DIMENSIONS: {{timbre.tim_dimensions}}</h5>
-            <h5>DERNIER MISE: $650</h5>
+            <h5>DERNIER MISE: {{mise.mise_max}}</h5>
             {% if session.utilisateur %}
             <div class="space-between">
-                <a href="timbre/miser"><button class="btn" style="margin-top: 15px;">PLACER UNE MISE</button></a>
-                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        aria-hidden="true" role="img" class="iconify iconify--bi" width="32" height="32"
-                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
-                        <path fill="currentColor" fill-rule="evenodd"
-                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15C-7.534 4.736 3.562-3.248 8 1.314z"></path>
-                    </svg></a>
+                <form  method="post" action="timbre/miser" >
+                    <input type="hidden" name="tim_id" value="{{timbre.tim_id}}">
+                    <input type="number" name="inputMise" id="inputMise" class="inputMise">
+                    <button class="btn btnMise" type="submit">PLACER UNE MISE</button>
+                </form>
+                <a href="timbre/favoris/{{timbre.tim_id}}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                aria-hidden="true" role="img" class="iconify iconify--bi" width="32" height="32"
+                preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15C-7.534 4.736 3.562-3.248 8 1.314z"></path>
+                </svg></a>
             </div>
             {% else %}
             <a href="utilisateur/index"><button class="btn" style="margin-top: 15px;">SE CONNECTER POUR PLACER UNE
@@ -46,7 +48,7 @@
             {% endif %}
         </div>
     </div>
-    <div>
+    <!-- <div>
         <article class="flex" id="description">
             <div class="articleFlex">
                 <h5>DESCRIPTION</h5>
@@ -89,7 +91,7 @@
                 sed. Eget nunc scelerisque viverra mauris in aliquam sem fringilla ut. Mi tempus imperdiet nulla
                 malesuada pellentesque elit.</p>
         </article>
-    </div>
+    </div> -->
 </div>
 
 <script src="../ressources/JS/zoom.js"></script>

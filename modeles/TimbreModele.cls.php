@@ -3,8 +3,7 @@ class TimbreModele extends AccesBd
 {
     /**
      * Fait une requête à la BD et retourne tous les enregistrements de la table enchere, timbre et image.
-     * @param string 
-     * @return object[] 
+     * 
      */
     public function tout()
     {
@@ -17,18 +16,9 @@ class TimbreModele extends AccesBd
         return $result;
     }
 
-    // public function toutTimbre()
-    // {
-    //     $command = "SELECT * FROM timbre";
-    //     $result = $this->lireTout($command, true);
-
-    //     return $result;
-    // }
-
     /**
      * Fait une requête à la BD et retourne le détail d'un timbre.
-     * @param string 
-     * @return object 
+     * 
      */
     public function un($tim_id)
     {
@@ -46,8 +36,7 @@ class TimbreModele extends AccesBd
 
     /**
      * Fait une requête à la BD et retourne le détail d'un conservation.
-     * @param string 
-     * @return object 
+     * 
      */
     public function unConservation($con_etat)
     {
@@ -59,8 +48,7 @@ class TimbreModele extends AccesBd
 
     /**
      * Fait une requête à la BD et insert une nouvelle enchere.
-     * @param object[] 
-     * @param string 
+     * 
      */
     public function ajouterEnchere($enchere, $uti_id)
     {
@@ -79,11 +67,10 @@ class TimbreModele extends AccesBd
         return $enc_id;
         // print_r($enc_id);
     }
-    /**
-     * Fait une requête à la BD et insert un nouveau timbre.
-     * @param object[] 
-     * @param string 
-     */
+
+   /**
+    * Fait une requête à la BD et insert un nouveau timbre.
+    */
     public function ajouterTimbre($enc_id, $enchere, $con_id)
     {
         extract($enchere);
@@ -104,10 +91,9 @@ class TimbreModele extends AccesBd
             ]
         );
     }
+
     /**
      * Fait une requête à la BD et insert une nouvelle image.
-     * @param object[] 
-     * @param string 
      */
     public function ajouterImg($tim_id)
     {
@@ -130,8 +116,7 @@ class TimbreModele extends AccesBd
 
     /**
      * Fait une requête à la BD et modifie les informations d'un timbre.
-     * @param object[] 
-     * @param string 
+     *  
      */
     public function changer($contact, $uti_id)
     {
@@ -139,7 +124,7 @@ class TimbreModele extends AccesBd
 
     /**
      * Fait une requête à la BD et supprime une enchere et les timbres associé.
-     * @param string 
+     * 
      */
     public function retirer($enc_id)
     {
@@ -160,8 +145,6 @@ class TimbreModele extends AccesBd
 
     /**
      * Fait une requête à la BD et retourne tous les enregistrements de la table enchere correspondant à l'expression recherchée.
-     * @param string $expression Chaine représentant l'expression à rechercher.
-     * @return object[] Un tableau d'objets représentant tous les encheres et leur timbres associés.
      *
      */
     public function rechercher($expression)
@@ -220,10 +203,42 @@ class TimbreModele extends AccesBd
     }
 
 
-    public function toutMises()
+    public function insertMise($valeurMise, $tim_id, $uti_id)
     {
-        $sql = "UPDATE * FROM mise ORDER BY mis_id";
-        $result = $this->modifier($sql);
-        return $result;
+        $result = $this->creer( "INSERT INTO mise (mis_prix, utilisateur_uti_id, mis_timbre_tim_id) VALUES( :valeurMise, :uti_id, :tim_id )",
+            [
+                "valeurMise"  => $valeurMise,
+                "uti_id" => $uti_id,
+                "tim_id" => $tim_id
+            ]); 
+        
+       return $result;
+    }
+
+
+    public function toutMises($id_tim)
+    {
+        $command = $this->lireUn("SELECT MAX(mis_prix) AS 'mise_max' FROM mise
+        WHERE mis_timbre_tim_id = :id_tim", ["id_tim" => $id_tim]);
+        // print_r($command);
+        return $command;
+    }
+
+    public function addFavoris($tim_id, $uti_id)
+    {
+        $result = $this->creer( "INSERT INTO favoris (fav_utilisateur_uti_id, fav_timbre_tim_id) VALUES(:uti_id, :tim_id )",
+            [
+                "uti_id" => $uti_id,
+                "tim_id" => $tim_id
+            ]); 
+            return $result;
+    }
+
+    public function toutFavoris($tim_id)
+    {
+        $command = $this->lireUn("SELECT * FROM favoris
+        WHERE fav_timbre_tim_id = :id_tim", ["id_tim" => $tim_id]);
+        print_r($command);
+        // return $command;
     }
 }
