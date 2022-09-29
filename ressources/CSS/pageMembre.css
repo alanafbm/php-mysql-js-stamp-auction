@@ -5,11 +5,15 @@
     padding: 25px;
     border-radius: 5px;
     margin: 25px 0 25px 0;
-    width: 1200px;
+    width: 100%;
     border: 4px dashed var(--primary-color);
     line-height: 1.625;
     align-items: center;
     justify-content: space-between;
+}
+.bienvenue{
+    margin-top: 50px;
+    text-align: center;
 }
 .cardEnchere{
     display: flex;

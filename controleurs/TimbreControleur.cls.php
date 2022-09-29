@@ -59,13 +59,15 @@ class TimbreControleur extends Controleur
     {
 
         $con_id = $this->modele->unConservation($_POST['con_etat']);
-        // print_r($con_id);
+        // print_r($_POST);
+        // print_r($_FILES["fileToUpload"]);
+
         // print_r($this->modele->ajouter($_POST, $_SESSION["utilisateur"]->uti_id, $_FILES['img_path'], $con_id));
         // $file = addslashes(file_get_contents($_FILES["img_path"]["tmp_name"]));
         $enc_id = $this->modele->ajouterEnchere($_POST, $_SESSION["utilisateur"]->uti_id);
         $tim_id = $this->modele->ajouterTimbre($enc_id, $_POST, $con_id);
-        print_r($this->modele->ajouterTimbre($enc_id, $_POST, $con_id));
-        //$this->modele->ajouterImg($tim_id);
+        // // print_r($this->modele->ajouterTimbre($enc_id, $_POST, $con_id));
+        $this->modele->ajouterImg($tim_id, $_FILES["fileToUpload"]);
 
         Utilitaire::nouvelleRoute('timbre/tout');
     }
@@ -77,9 +79,20 @@ class TimbreControleur extends Controleur
     public function modifier($enc_id) 
     {
         // print_r($enc_id);
-        // print_r($_POST);
-        // $this->modele->changer($_POST, $_SESSION["utilisateur"]->uti_id, $enc_id);
         // Utilitaire::nouvelleRoute('timbre/tout');
+    }
+    
+    public function modification($enc_id)
+    {
+        $con_id = $this->modele->unConservation($_POST['con_etat']);
+        print_r($con_id);
+        $this->modele->changerEnchere($_POST, $_SESSION["utilisateur"]->uti_id, $enc_id);
+        $tim_id = $this->modele->changerTimbre($_POST, $enc_id, $con_id);
+        $this->modele->changerImg($_FILES["fileToUpload"], $tim_id);
+
+        Utilitaire::nouvelleRoute('timbre/tout');
+
+
     }
 
     /**
@@ -141,14 +154,5 @@ class TimbreControleur extends Controleur
 
     }
     
-    public function favoris($tim_id)
-    {
-        // print_r($tim_id);
-        $id_tim = $tim_id[0];
-        $this->modele->addFavoris($id_tim, $_SESSION["utilisateur"]->uti_id);
-        $this->gabarit->affecter('favoris', $this->modele->toutFavoris($id_tim));
-        // print_r($this->modele->toutFavoris($id_tim));
-        Utilitaire::nouvelleRoute('utilisateur/profil');
-    }
 
 }

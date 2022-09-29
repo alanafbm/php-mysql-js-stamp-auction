@@ -95,18 +95,21 @@ class TimbreModele extends AccesBd
     /**
      * Fait une requête à la BD et insert une nouvelle image.
      */
-    public function ajouterImg($tim_id)
+    public function ajouterImg($tim_id, $files)
     {
+        extract($files);
+        print_r($name);
         // extract($enchere);
         // extract($image); 
         $id_tim = (int)$tim_id;
-        $name = 'stamp';
-        $path = 'ressources/images/timbres/stamp';
+        $nom = 'stamp';
+        $path = 'ressources/images/timbres/';
+        // $path = 'ressources/images/timbres/stamp1.jpg';
         $this->creer(
-            "INSERT INTO image (img_titre, img_path, timbre_tim_id) VALUES( :img_titre, :img_path, :img_timbre_tim_id )",
+            "INSERT INTO image (img_titre, img_path, img_timbre_tim_id) VALUES( :img_titre, :img_path, :img_timbre_tim_id )",
             [
-                "img_titre"  => $name .= $tim_id,
-                "img_path" => $path .= $tim_id,
+                "img_titre"  => $nom .= $tim_id,
+                "img_path" => $path .= $name,
                 "img_timbre_tim_id" => $id_tim
             ]
         );
@@ -118,8 +121,75 @@ class TimbreModele extends AccesBd
      * Fait une requête à la BD et modifie les informations d'un timbre.
      *  
      */
-    public function changer($contact, $uti_id)
+    public function changerEnchere($enchere, $uti_id, $enc_id)
     {
+        extract($enchere);
+        // // Faire une requete pour inserer une nouvelle enchere
+        $enc_id = $this->modifier(
+            "UPDATE enchere SET 
+            enc_nom = :enc_nom,
+            enc_date_debut = :enc_date_debut,
+            enc_date_fin = :enc_date_fin,
+            enc_pieces = :enc_pieces,
+            utilisateur_uti_id = :utilisateur_uti_id 
+            WHERE enc_id = :enc_id",
+            [
+                "enc_id"      => $enc_id,
+                "enc_nom"      => $enc_nom,
+                "enc_date_debut"   => $enc_date_debut,
+                "enc_date_fin"   => $enc_date_fin,
+                "enc_pieces"   => $enc_pieces,
+                "utilisateur_uti_id" => $uti_id
+            ]
+        );
+        return $enc_id;
+    }
+
+    public function changerTimbre($enchere, $enc_id, $con_id)
+    {
+        extract($enchere);
+        print_r($con_id);
+        $id_con = $con_id->con_id;
+
+        // // Faire une requete pour inserer une nouvelle enchere
+        $tim_id = $this->modifier(
+            "UPDATE timbre SET 
+            tim_nom =:tim_nom, 
+            tim_date_creation = NOW(), 
+            tim_couleur = :tim_couleur, 
+            tim_pays_origine=:tim_pays_origine, 
+            tim_prix=:tim_prix, 
+            tim_dimensions=:tim_dimensions, 
+            tim_certifie=:tim_certifie, 
+            enchere_enc_id=:enchere_enc_id, 
+            conservation_con_id=:conservation_con_id
+            WHERE enchere_enc_id = :enchere_enc_id",
+            [
+                "tim_nom"         => $enc_nom,
+                "tim_couleur"   => $tim_couleur,
+                "tim_pays_origine" => $tim_pays_origine,
+                "tim_prix"    => $tim_prix,
+                "tim_dimensions"  => $tim_dimensions,
+                "tim_certifie"  => $tim_certifie,
+                "enchere_enc_id"   => $enc_id,
+                "conservation_con_id" => $id_con
+            ]
+        );
+        return $tim_id;
+    }
+
+    public function changerImg($files, $tim_id)
+    {
+        extract($files);
+        print_r($tim_id);
+        $nom = 'stamp';
+        $path = 'ressources/images/timbres/';
+        // $path = 'ressources/images/timbres/stamp1.jpg';
+        $this->modifier(
+            "UPDATE image SET  
+            img_path=:img_path
+            WHERE img_timbre_tim_id = $tim_id",
+            ["img_path" => $path .= $name]);
     }
 
     /**
@@ -224,21 +294,4 @@ class TimbreModele extends AccesBd
         return $command;
     }
 
-    public function addFavoris($tim_id, $uti_id)
-    {
-        $result = $this->creer( "INSERT INTO favoris (fav_utilisateur_uti_id, fav_timbre_tim_id) VALUES(:uti_id, :tim_id )",
-            [
-                "uti_id" => $uti_id,
-                "tim_id" => $tim_id
-            ]); 
-            return $result;
-    }
-
-    public function toutFavoris($tim_id)
-    {
-        $command = $this->lireUn("SELECT * FROM favoris
-        WHERE fav_timbre_tim_id = :id_tim", ["id_tim" => $tim_id]);
-        print_r($command);
-        // return $command;
-    }
 }

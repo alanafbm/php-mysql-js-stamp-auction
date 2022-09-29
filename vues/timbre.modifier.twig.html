@@ -3,9 +3,9 @@
 {% block main %}
 {% if session.utilisateur %}
 <div class="align-center flex">
-<section class="cardPageMembre">
+<section class="cardPageMembre wrapper">
    <h1>Enchere {{infos.enchere_enc_id}}</h1>
-    <form method="POST" action="timbre/modifier{{infos.enchere_enc_id}}" enctype="multipart/form-data">
+    <form method="POST" action="timbre/modification/{{infos.enchere_enc_id}}" enctype="multipart/form-data">
        <div class="cardEnchere">
           <div class="formEnchere">
              <label for="enc_nom">Nom d'enchère'</label>
@@ -43,9 +43,9 @@
              <input type="date" value="{{enc_date_debut}}" name="enc_date_debut" id="enc_date_debut" placeholder="Date debut" >
              <label for="enc_date_fin">Date fin</label>
              <input type="date" value="{{enc_date_fin}}" name="enc_date_fin" id="enc_date_fin" placeholder="Date fin" >
-             <label for="img_path">Image</label>
-             <input type="file" name="img_path" id="img_path" accept="image/png, image/jpeg" multiple placeholder=" Image">
-          </div>
+             <label for="fileToUpload">Image</label>
+             <input type="file" value="{{img_path}}" name="fileToUpload" id="fileToUpload" accept="image/png, image/jpeg" placeholder=" Image">
+     </div>
        </div>
        <input class="btnPublier" type="submit" name="publier">
     </form>

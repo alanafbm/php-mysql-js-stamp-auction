@@ -102,13 +102,25 @@ class UtilisateurControleur extends Controleur
         {
             // print_r($this->modele->un($_SESSION["utilisateur"]->uti_id));
             //  print_r($this->modele->toutEnchere());
-            // print_r($this->modele->toutImages());
+            // print_r($this->modele->toutFavoris($_SESSION["utilisateur"]->uti_id));
             $this->gabarit->affecter('utilisateur', $this->modele->un($_SESSION["utilisateur"]->uti_courriel));
+            $this->gabarit->affecter('favoris', $this->modele->toutFavoris($_SESSION["utilisateur"]->uti_id));
             $this->gabarit->affecter('encheres', $this->modele->toutEnchere());
             // $this->gabarit->affecter('images', $this->modele->toutImages());
 
 
+
         }
     }
+    public function favoris($tim_id)
+    {
+        // print_r($tim_id);
+        $id_tim = $tim_id[0];
+        $this->modele->addFavoris($id_tim, $_SESSION["utilisateur"]->uti_id);
+        $this->gabarit->affecter('favoris', $this->modele->toutFavoris($_SESSION["utilisateur"]->uti_id));
+        // print_r($this->modele->toutFavoris($id_tim));
+        Utilitaire::nouvelleRoute('utilisateur/profil');
+    }
+
 
 }

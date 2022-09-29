@@ -1,8 +1,9 @@
 
-function magnify(imgID, zoom) {
-  var img, glass, w, h, bw;
-  img = document.getElementById(imgID);
-  console.log(img);
+(function () {
+ let img, glass, w, h, bw;
+  img = document.getElementById("imgzoom");
+  // console.log(img);
+  let zoom = 3;
   /*create magnifier glass:*/
   glass = document.createElement("DIV");
   glass.setAttribute("class", "img-magnifier-glass");
@@ -22,7 +23,7 @@ function magnify(imgID, zoom) {
   glass.addEventListener("touchmove", moveMagnifier);
   img.addEventListener("touchmove", moveMagnifier);
   function moveMagnifier(e) {
-      var pos, x, y;
+      let pos, x, y;
       /*prevent any other actions that may occur when moving over the image*/
       e.preventDefault();
       /*get the cursor's x and y positions:*/
@@ -41,7 +42,7 @@ function magnify(imgID, zoom) {
       glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
   }
   function getCursorPos(e) {
-      var a, x = 0, y = 0;
+      let a, x = 0, y = 0;
       e = e || window.event;
       /*get the x and y positions of the image:*/
       a = img.getBoundingClientRect();
@@ -53,7 +54,7 @@ function magnify(imgID, zoom) {
       y = y - window.pageYOffset;
       return { x: x, y: y };
   }
-};
+})();
 
 
 

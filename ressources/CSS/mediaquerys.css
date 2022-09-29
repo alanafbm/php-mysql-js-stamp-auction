@@ -273,6 +273,26 @@
         padding: 0 25px;
     }
  
-    /* LOGIN */
+    /* PROFIL */
+
+    .cardEnchere{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cardPageMembre > .flexRow{
+        flex-direction: column;
+    }
+
+    .wrapper > .cardPageMembre{
+        width: 60%;
+
+    }
+    .wrapper > .profilMembre{
+        margin-left: 10px;
+    }
+    .descriptionContainer, .containerSection{
+        padding: 0;
+    }
  
 }

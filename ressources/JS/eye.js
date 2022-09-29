@@ -4,7 +4,7 @@
     const iconEyeClose = document.getElementById('icon-eye-close');
     const inputPassword = document.getElementById("password");
 
-    console.log(iconEyeOpen);
+    // console.log(iconEyeOpen);
 
     /* addEventListener for the close eye */
     iconEyeOpen.addEventListener('click', function(e){

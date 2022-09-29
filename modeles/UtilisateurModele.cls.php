@@ -81,4 +81,22 @@ class UtilisateurModele extends AccesBd
 
         return $res;
     }
+    public function addFavoris($tim_id, $uti_id)
+    {
+        $result = $this->creer( "INSERT INTO favoris (fav_utilisateur_uti_id, fav_timbre_tim_id) VALUES(:uti_id, :tim_id )",
+            [
+                "uti_id" => $uti_id,
+                "tim_id" => $tim_id
+            ]); 
+            return $result;
+    }
+
+    public function toutFavoris($uti_id)
+    {
+        $command = $this->lireUn("SELECT * FROM favoris
+        WHERE fav_utilisateur_uti_id = :id_uti", ["id_uti" => $uti_id]);
+        // print_r($command);
+        return $command;
+    }
+
 }

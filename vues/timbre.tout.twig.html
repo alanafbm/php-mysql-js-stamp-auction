@@ -44,13 +44,13 @@
         <h3>Prix plancher: {{infos.tim_prix}}</h3>
         {% if session.utilisateur and utilisateur == infos.utilisateur_uti_id %}
         <div class="divRow btnDetails">
-          <a href="timbre/un/{{infos.tim_id}}"><button class="btn">MORE DETAILS</button></a>
+          <a href="timbre/un/{{infos.tim_id}}"><button class="btn">PLUS DE DÉTAILS</button></a>
           <a href="timbre/modifier/{{infos.enchere_enc_id}}" data-js-update><button class="btn">MODIFIER</button></a>
           <a href="timbre/retirer/{{infos.enchere_enc_id}}" data-js-delete><button class="btn">SUPPRIMER</button></a>
         </div>
         {% else %}
         <div class="divRow btnDetails">
-          <a href="timbre/un/{{infos.tim_id}}"><button class="btn" style="margin-top: 15px;">MORE DETAILS</button></a>
+          <a href="timbre/un/{{infos.tim_id}}"><button class="btn" style="margin-top: 15px;">PLUS DE DÉTAILS</button></a>
         </div>
         {% endif %}
       </div>
