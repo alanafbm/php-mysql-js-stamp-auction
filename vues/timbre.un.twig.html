@@ -1,7 +1,6 @@
 {% extends "base.twig.html" %}
 
 {% block main %}
-<!-- <script src="../ressources/JS/zoom.js"></script> -->
 
 <!---------------------Sections------------------->
 <div class="wrapper pd-rl padding-top">
@@ -32,15 +31,18 @@
             <h5>DERNIER MISE: {{mise.mise_max}}</h5>
             {% if session.utilisateur %}
             <div class="space-between">
-                <form  method="post" action="timbre/miser" >
+                <form method="post" action="timbre/miser">
                     <input type="hidden" name="tim_id" value="{{timbre.tim_id}}">
                     <input type="number" name="inputMise" id="inputMise" class="inputMise">
                     <button class="btn btnMise" type="submit">PLACER UNE MISE</button>
                 </form>
-                <a href="utilisateur/favoris/{{timbre.tim_id}}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                aria-hidden="true" role="img" class="iconify iconify--bi" width="32" height="32"
-                preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15C-7.534 4.736 3.562-3.248 8 1.314z"></path>
-                </svg></a>
+                <a href="utilisateur/favoris/{{timbre.tim_id}}"><svg xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                        class="iconify iconify--bi" width="32" height="32" preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 16 16">
+                        <path fill="currentColor" fill-rule="evenodd"
+                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15C-7.534 4.736 3.562-3.248 8 1.314z"></path>
+                    </svg></a>
             </div>
             {% else %}
             <a href="utilisateur/index"><button class="btn" style="margin-top: 15px;">SE CONNECTER POUR PLACER UNE

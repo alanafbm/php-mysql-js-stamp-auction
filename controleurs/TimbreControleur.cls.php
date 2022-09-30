@@ -26,11 +26,11 @@ class TimbreControleur extends Controleur
         // Injecte le résultat dans la 'vue'
         $this->gabarit->affecter('encheres', $this->modele->tout());
         // Use for add modifier and supprimer in timbre/tout
-        if($_SESSION["utilisateur"]){
+        if($_SESSION){
+            print_r("to aqui");
             $this->gabarit->affecter('utilisateur', $_SESSION["utilisateur"]->uti_id);
         }
         // $this->gabarit->affecter('timbres', $this->modele->toutTimbre());
-        // print_r($this->modele->tout());
        
 
     }
@@ -47,7 +47,6 @@ class TimbreControleur extends Controleur
         $this->gabarit->affecter('mise', $mise_max);
 
         
-        // print_r($this->modele->un($tim_id));
     }
 
     
@@ -59,14 +58,10 @@ class TimbreControleur extends Controleur
     {
 
         $con_id = $this->modele->unConservation($_POST['con_etat']);
-        // print_r($_POST);
-        // print_r($_FILES["fileToUpload"]);
 
-        // print_r($this->modele->ajouter($_POST, $_SESSION["utilisateur"]->uti_id, $_FILES['img_path'], $con_id));
         // $file = addslashes(file_get_contents($_FILES["img_path"]["tmp_name"]));
         $enc_id = $this->modele->ajouterEnchere($_POST, $_SESSION["utilisateur"]->uti_id);
         $tim_id = $this->modele->ajouterTimbre($enc_id, $_POST, $con_id);
-        // // print_r($this->modele->ajouterTimbre($enc_id, $_POST, $con_id));
         $this->modele->ajouterImg($tim_id, $_FILES["fileToUpload"]);
 
         Utilitaire::nouvelleRoute('timbre/tout');
@@ -78,7 +73,6 @@ class TimbreControleur extends Controleur
      */
     public function modifier($enc_id) 
     {
-        // print_r($enc_id);
         // Utilitaire::nouvelleRoute('timbre/tout');
     }
     
@@ -101,7 +95,6 @@ class TimbreControleur extends Controleur
      */
     public function retirer($enc_id) 
     {
-    //    print_r($enc_id);
         $this->modele->retirer($enc_id);
         Utilitaire::nouvelleRoute('timbre/tout');
     }
@@ -121,12 +114,10 @@ class TimbreControleur extends Controleur
             if ($_POST["condition"] && $_POST["condition"] != "0"){
                 
                 $this->gabarit->affecter('encheres', $this->modele->rechercheCondition($_POST));
-                // print_r($this->modele->rechercherCondition($_POST));
             }
             // Recherche
             if ($_POST["recherche"]){
                 $recherche = "%" . $_POST['recherche'] . "%";
-                // print_r($recherche);
                 $this->gabarit->affecter('encheres', $this->modele->rechercher($recherche));
             }
         }
@@ -146,8 +137,6 @@ class TimbreControleur extends Controleur
             $mise_max = $this->modele->toutMises($tim_id);
             $this->gabarit->affecter('timbre', $this->modele->un($tim_id));
             $this->gabarit->affecter('mise', $mise_max);
-            // print_r($this->modele->un($tim_id));
-            // print_r($mise_max);
         
             Utilitaire::nouvelleRoute('timbre/un/' . $tim_id);
         }

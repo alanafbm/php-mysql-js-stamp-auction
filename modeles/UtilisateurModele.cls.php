@@ -3,7 +3,7 @@ class UtilisateurModele extends AccesBd
 {
     /**
      * Obtenir le détail d'un utilisateur
-     * @param string $courriel Adresse courriel de l'utilisateur
+     * 
      */
     public function un($courriel)
     {
@@ -15,8 +15,7 @@ class UtilisateurModele extends AccesBd
 
      /**
      * Fait une requête à la BD et retourne tous les enregistrements de la table enchere.
-     * @param string 
-     * @return object[] 
+     * 
      */
     public function toutEnchere()
     {
@@ -30,12 +29,10 @@ class UtilisateurModele extends AccesBd
 
         return $result;
 
-       /*  "SELECT * FROM enchere 
-                    JOIN timbre ON enchere_enc_id = enc_id 
-                    JOIN images ON timbre_tim_id = tim_id 
-                    ORDER BY enc_id"; */
     }
-
+/** 
+ * Fait une requête à la BD et retourne tout les images.
+*/
     public function toutImages()
     {
         $command = "SELECT * FROM image 
@@ -46,10 +43,6 @@ class UtilisateurModele extends AccesBd
 
         return $result;
 
-       /*  "SELECT * FROM enchere 
-                    JOIN timbre ON enchere_enc_id = enc_id 
-                    JOIN images ON timbre_tim_id = tim_id 
-                    ORDER BY enc_id"; */
     }
   
 
@@ -81,6 +74,9 @@ class UtilisateurModele extends AccesBd
 
         return $res;
     }
+/** 
+ * Fait une requête à la BD et mettre dans la table favoris.
+*/
     public function addFavoris($tim_id, $uti_id)
     {
         $result = $this->creer( "INSERT INTO favoris (fav_utilisateur_uti_id, fav_timbre_tim_id) VALUES(:uti_id, :tim_id )",
@@ -90,12 +86,13 @@ class UtilisateurModele extends AccesBd
             ]); 
             return $result;
     }
-
+/** 
+ * Fait une requête à la BD et retourne tout les favoris.
+*/
     public function toutFavoris($uti_id)
     {
         $command = $this->lireUn("SELECT * FROM favoris
         WHERE fav_utilisateur_uti_id = :id_uti", ["id_uti" => $uti_id]);
-        // print_r($command);
         return $command;
     }
 

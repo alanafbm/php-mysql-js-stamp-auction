@@ -45,7 +45,6 @@ class UtilisateurControleur extends Controleur
         $courriel = $_POST['uti_courriel'];
         $mdp = $_POST['uti_mdp'];
         $utilisateur = $this->modele->un($courriel);
-        // $uti_id = $utilisateur->uti_id;
         $uti_courriel = $utilisateur->uti_courriel;
         var_dump($uti_courriel);
         $erreur = "";
@@ -79,7 +78,6 @@ class UtilisateurControleur extends Controleur
     public function un($courriel)
     {
         // Chercher les utilisateurs de la BD 
-        // print_r($this->modele->un($courriel));
         $this->modele->un($courriel);
     }
 
@@ -100,9 +98,6 @@ class UtilisateurControleur extends Controleur
     {
         if(isset($_SESSION["utilisateur"]))
         {
-            // print_r($this->modele->un($_SESSION["utilisateur"]->uti_id));
-            //  print_r($this->modele->toutEnchere());
-            // print_r($this->modele->toutFavoris($_SESSION["utilisateur"]->uti_id));
             $this->gabarit->affecter('utilisateur', $this->modele->un($_SESSION["utilisateur"]->uti_courriel));
             $this->gabarit->affecter('favoris', $this->modele->toutFavoris($_SESSION["utilisateur"]->uti_id));
             $this->gabarit->affecter('encheres', $this->modele->toutEnchere());
@@ -114,11 +109,9 @@ class UtilisateurControleur extends Controleur
     }
     public function favoris($tim_id)
     {
-        // print_r($tim_id);
         $id_tim = $tim_id[0];
         $this->modele->addFavoris($id_tim, $_SESSION["utilisateur"]->uti_id);
         $this->gabarit->affecter('favoris', $this->modele->toutFavoris($_SESSION["utilisateur"]->uti_id));
-        // print_r($this->modele->toutFavoris($id_tim));
         Utilitaire::nouvelleRoute('utilisateur/profil');
     }
 

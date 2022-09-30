@@ -30,7 +30,6 @@ class TimbreModele extends AccesBd
         WHERE tim_id = :tim_id", ['tim_id' => $id]);
 
         return $result;
-        // print_r($result);
     }
 
 
@@ -42,7 +41,6 @@ class TimbreModele extends AccesBd
     {
 
         return $this->lireUn("SELECT con_id FROM conservation WHERE con_etat=:con_etat", ['con_etat' => $con_etat]);
-        // var_dump($con_id);
 
     }
 
@@ -65,7 +63,6 @@ class TimbreModele extends AccesBd
             ]
         );
         return $enc_id;
-        // print_r($enc_id);
     }
 
    /**
@@ -98,9 +95,6 @@ class TimbreModele extends AccesBd
     public function ajouterImg($tim_id, $files)
     {
         extract($files);
-        print_r($name);
-        // extract($enchere);
-        // extract($image); 
         $id_tim = (int)$tim_id;
         $nom = 'stamp';
         $path = 'ressources/images/timbres/';
@@ -115,10 +109,8 @@ class TimbreModele extends AccesBd
         );
     }
 
-
-
     /**
-     * Fait une requête à la BD et modifie les informations d'un timbre.
+     * Fait une requête à la BD et modifie les informations d'une enchére.
      *  
      */
     public function changerEnchere($enchere, $uti_id, $enc_id)
@@ -145,6 +137,9 @@ class TimbreModele extends AccesBd
         return $enc_id;
     }
 
+/**
+ * Fait une requête à la BD et modifie les informations d'un timbre.
+ */
     public function changerTimbre($enchere, $enc_id, $con_id)
     {
         extract($enchere);
@@ -177,11 +172,12 @@ class TimbreModele extends AccesBd
         );
         return $tim_id;
     }
-
+/**
+ * Fait une requête à la BD et modifie les informations d'une image.
+ */
     public function changerImg($files, $tim_id)
     {
         extract($files);
-        print_r($tim_id);
         $nom = 'stamp';
         $path = 'ressources/images/timbres/';
         // $path = 'ressources/images/timbres/stamp1.jpg';
@@ -209,7 +205,6 @@ class TimbreModele extends AccesBd
             ['enc_id' => $id]
         );
 
-        var_dump($enc_id);
     }
 
 
@@ -219,12 +214,11 @@ class TimbreModele extends AccesBd
      */
     public function rechercher($expression)
     {
-        // print_r($expression);
         return $this->lireTout(
             "SELECT *  FROM enchere 
-                                JOIN timbre ON enchere_enc_id = enc_id
-                                LEFT JOIN image ON img_timbre_tim_id = tim_id 
-                                WHERE enc_nom LIKE :enc_nom OR tim_nom LIKE :tim_nom                                ORDER BY enchere_enc_id",
+            JOIN timbre ON enchere_enc_id = enc_id
+            LEFT JOIN image ON img_timbre_tim_id = tim_id 
+            WHERE enc_nom LIKE :enc_nom OR tim_nom LIKE :tim_nom                                ORDER BY enchere_enc_id",
             true, // on veut les données groupées par contact
             [
                 "enc_nom"          => $expression,
@@ -233,16 +227,18 @@ class TimbreModele extends AccesBd
         );
     }
 
-
+/**
+ * Fait une requête à la BD et recherche la certification
+ */
     public function rechercheCertifie($post)
     {
         $expression = $post["certifie"];
         return $this->lireTout(
             "SELECT * FROM enchere 
-                                JOIN timbre ON enchere_enc_id = enc_id
-                                LEFT JOIN image ON img_timbre_tim_id = tim_id 
-                                WHERE tim_certifie LIKE :oui OR tim_certifie LIKE :non 
-                                ORDER BY enchere_enc_id",
+            JOIN timbre ON enchere_enc_id = enc_id
+            LEFT JOIN image ON img_timbre_tim_id = tim_id 
+            WHERE tim_certifie LIKE :oui OR tim_certifie LIKE :non 
+            ORDER BY enchere_enc_id",
             true,
             [
                 "oui"          => $expression,
@@ -251,17 +247,19 @@ class TimbreModele extends AccesBd
         );
     }
 
+/**
+ * Fait une requête à la BD et cherche le condition choisi
+ */
     public function rechercheCondition($post)
     {
 
         $con_id = $post["condition"];
-        // print_r($con_id);
         return $this->lireTout(
             "SELECT * FROM enchere 
-                                JOIN timbre ON enchere_enc_id = enc_id
-                                LEFT JOIN image ON img_timbre_tim_id = tim_id 
-                                WHERE conservation_con_id LIKE :avec_gomme OR conservation_con_id LIKE :sans_gomme OR conservation_con_id LIKE :bonne OR conservation_con_id LIKE :endommagee
-                                ORDER BY enchere_enc_id",
+            JOIN timbre ON enchere_enc_id = enc_id
+            LEFT JOIN image ON img_timbre_tim_id = tim_id 
+            WHERE conservation_con_id LIKE :avec_gomme OR conservation_con_id LIKE :sans_gomme OR conservation_con_id LIKE :bonne OR conservation_con_id LIKE :endommagee
+            ORDER BY enchere_enc_id",
             true,
             [
                 "avec_gomme"          => $con_id,
@@ -271,8 +269,9 @@ class TimbreModele extends AccesBd
             ]
         );
     }
-
-
+/**
+ * Fait une requête à la BD et insert le mise
+ */
     public function insertMise($valeurMise, $tim_id, $uti_id)
     {
         $result = $this->creer( "INSERT INTO mise (mis_prix, utilisateur_uti_id, mis_timbre_tim_id) VALUES( :valeurMise, :uti_id, :tim_id )",
@@ -285,12 +284,13 @@ class TimbreModele extends AccesBd
        return $result;
     }
 
-
+/**
+ * Fait une requête à la BD et retourne le mise_prix max de la table mise
+ */
     public function toutMises($id_tim)
     {
         $command = $this->lireUn("SELECT MAX(mis_prix) AS 'mise_max' FROM mise
         WHERE mis_timbre_tim_id = :id_tim", ["id_tim" => $id_tim]);
-        // print_r($command);
         return $command;
     }
 
