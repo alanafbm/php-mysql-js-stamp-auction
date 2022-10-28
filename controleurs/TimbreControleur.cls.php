@@ -27,7 +27,6 @@ class TimbreControleur extends Controleur
         $this->gabarit->affecter('encheres', $this->modele->tout());
         // Use for add modifier and supprimer in timbre/tout
         if($_SESSION){
-            print_r("to aqui");
             $this->gabarit->affecter('utilisateur', $_SESSION["utilisateur"]->uti_id);
         }
         // $this->gabarit->affecter('timbres', $this->modele->toutTimbre());

@@ -46,7 +46,7 @@ class UtilisateurControleur extends Controleur
         $mdp = $_POST['uti_mdp'];
         $utilisateur = $this->modele->un($courriel);
         $uti_courriel = $utilisateur->uti_courriel;
-        var_dump($uti_courriel);
+        // var_dump($uti_courriel);
         $erreur = "";
         //!password_verify($mdp, $utilisateur->uti_mdp) estava dando erro!
         if ($courriel != $uti_courriel || $mdp != $utilisateur->uti_mdp) {

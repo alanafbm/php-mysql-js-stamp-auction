@@ -1,8 +1,11 @@
 <?php
 class AccesBd 
 {
-    private PDO $pdo; // Objet de connexion PDO
-    private  PDOStatement $rp; // Objet de requête paramétrée PDO
+    // private PDO $pdo; // Objet de connexion PDO
+    // private  PDOStatement $rp; // Objet de requête paramétrée PDO
+    private  $pdo; // Objet de connexion PDO
+    private  $rp; // Objet de requête paramétrée PDO
+
 
     /**
      * Constructeur : initialise l'objet PDO
