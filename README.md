@@ -1,6 +1,6 @@
 # Website created for the UX/UI course at college maisonneuve by Alana Moraes.
 
-![Apresentation website](./Animation.gif)
+![Apresentation website](./AnimationStampee.gif)
 
 UX/UI - [Lord Stampee by Alana Moraes estatique](https://stampee-alana.netlify.app/)
 
