@@ -51,3 +51,5 @@ Seulement les requis pour l’interface publique sont considérés ici, les requ
 1. Contenu
    
 - Certains contenus sont nécessaires au bon fonctionnement de la plateforme. Ces contenus prennent la forme d’entités telles que « Timbre » et « Enchère ». Nous en avons besoin pour communiquer les données pertinentes aux usagers tentés de placer une offre. Leur modèle de données initial est présenté ci-dessous. Soyez à l’aise de suggérer des ajouts si vous en voyez la pertinence dans l’interface.
+
+![Demo stampee](./Animation.gif)
